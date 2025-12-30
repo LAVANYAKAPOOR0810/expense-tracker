@@ -5,6 +5,14 @@ const balanceEl = document.getElementById("balance");
 const incomeEl = document.getElementById("income");
 const expenseEl = document.getElementById("expense");
 
+
+
+const form = document.getElementById("transaction-form");
+const titleInput = document.getElementById("title");
+const amountInput = document.getElementById("amount");
+const typeSelect = document.getElementById("type");
+
+
 async function fetchTransactions() {
     const response = await fetch(API_URL);
     const transactions = await response.json();
@@ -45,4 +53,27 @@ async function fetchTransactions() {
   }
 
 
+
+
   fetchTransactions();
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+  
+    const newTransaction = {
+      title: titleInput.value,
+      amount: Number(amountInput.value),
+      type: typeSelect.value,
+    };
+  
+    await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTransaction),
+    });
+  
+    form.reset();
+    fetchTransactions(); // refresh UI
+  });

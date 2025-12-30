@@ -18,6 +18,34 @@
   <h3>Transactions</h3>
   <ul id="transaction-list"></ul>
 
+
+
+  <h3>Add New Transaction</h3>
+
+<form id="transaction-form">
+  <input
+    type="text"
+    id="title"
+    placeholder="Transaction title"
+    required
+  />
+
+  <input
+    type="number"
+    id="amount"
+    placeholder="Amount"
+    required
+  />
+
+  <select id="type" required>
+    <option value="">Select Type</option>
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select>
+
+  <button type="submit">Add Transaction</button>
+</form>
+
   <script src="script.js"></script>
 </body>
 </html>
